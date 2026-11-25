@@ -2,24 +2,25 @@
 declare(strict_types=1);
 
 /**
- * ITCS333 A4 starter — implement the three pure validation functions.
+ * ITCS333 A4 — pure validation functions.
  * They are unit-tested by the autograder (tests/UnitTest.php).
  */
 
+// true when the value is not empty after removing spaces
 function validate_required(string $v): bool
 {
-    // TODO: return true when $v is not empty after trimming
-    return false;
+    return trim($v) !== '';
 }
 
+// true when the value is a valid email address
 function validate_email(string $v): bool
 {
-    // TODO: return true when $v is a valid email address
-    return false;
+    return filter_var(trim($v), FILTER_VALIDATE_EMAIL) !== false;
 }
 
+// true when the number of characters is between $min and $max (inclusive)
 function validate_length(string $v, int $min, int $max): bool
 {
-    // TODO: return true when mb_strlen($v) is within [$min, $max]
-    return false;
+    $len = mb_strlen($v);
+    return $len >= $min && $len <= $max;
 }
